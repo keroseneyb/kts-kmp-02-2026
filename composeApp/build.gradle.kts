@@ -34,6 +34,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.compose.navigation)
             implementation(libs.coil)
+            implementation(libs.coil.okhttp)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

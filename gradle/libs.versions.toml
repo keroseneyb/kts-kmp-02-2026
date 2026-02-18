@@ -17,6 +17,7 @@ kotlinx-coroutines = "1.10.2"
 material3 = "1.10.0-alpha05"
 compose-navigation = "2.9.2"
 coil = "3.3.0"
+coil-okhttp = "3.3.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -39,6 +40,7 @@ compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-previ
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref= "coil" }
+coil-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil-okhttp" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
