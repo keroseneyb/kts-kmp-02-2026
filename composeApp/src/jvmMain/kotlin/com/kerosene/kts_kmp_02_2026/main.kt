@@ -2,6 +2,7 @@ package com.kerosene.kts_kmp_02_2026
 
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import com.kerosene.kts_kmp_02_2026.app.App
 
 fun main() = application {
     Window(
