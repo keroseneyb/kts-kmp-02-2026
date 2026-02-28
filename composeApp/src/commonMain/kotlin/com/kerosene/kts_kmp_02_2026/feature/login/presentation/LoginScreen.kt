@@ -5,10 +5,12 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -24,19 +26,23 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
+import com.kerosene.kts_kmp_02_2026.common.ui.AppImage
+import com.kerosene.kts_kmp_02_2026.feature.login.presentation.Dimens.elementsSpacer
 import ktskmp022026.composeapp.generated.resources.Res
 import ktskmp022026.composeapp.generated.resources.email
 import ktskmp022026.composeapp.generated.resources.login
 import ktskmp022026.composeapp.generated.resources.password
 import org.jetbrains.compose.resources.stringResource
+
+object Dimens {
+    val elementsSpacer = 24.dp
+}
 
 @Composable
 fun LoginScreen() {
@@ -46,6 +52,7 @@ fun LoginScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.systemBars)
             .verticalScroll(scrollState)
             .imePadding()
             .clickable(
@@ -59,22 +66,19 @@ fun LoginScreen() {
         verticalArrangement = Arrangement.Center
     ) {
         LoginImage()
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(elementsSpacer))
         EmailTextInput()
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(elementsSpacer))
         PasswordTextInput()
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(elementsSpacer))
         LoginButton()
     }
 }
 
 @Composable
 private fun LoginImage() {
-    AsyncImage(
-        model = "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg",
-        contentScale = ContentScale.Fit,
-        modifier = Modifier.fillMaxWidth(),
-        contentDescription = null
+    AppImage(
+        model = "https://i.pinimg.com/736x/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg"
     )
 }
 
