@@ -1,13 +1,13 @@
-package com.kerosene.kts_kmp_02_2026.common.ui
+package com.kerosene.core.common.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.AsyncImage
-import ktskmp022026.composeapp.generated.resources.Res
-import ktskmp022026.composeapp.generated.resources.ic_image_error
-import ktskmp022026.composeapp.generated.resources.ic_image_placeholder
+import com.kerosene.core.common.Res
+import com.kerosene.core.common.ic_image_error
+import com.kerosene.core.common.ic_image_placeholder
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
