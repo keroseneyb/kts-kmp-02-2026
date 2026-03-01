@@ -1,5 +1,6 @@
-package com.kerosene.kts_kmp_02_2026.feature.login.presentation
+package com.kerosene.features.auth.presentation
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -16,39 +17,81 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kerosene.kts_kmp_02_2026.common.ui.AppImage
-import com.kerosene.kts_kmp_02_2026.feature.login.presentation.Dimens.elementsSpacer
-import ktskmp022026.composeapp.generated.resources.Res
-import ktskmp022026.composeapp.generated.resources.email
-import ktskmp022026.composeapp.generated.resources.login
-import ktskmp022026.composeapp.generated.resources.password
+import com.kerosene.core.common.ui.AppImage
+import com.kerosene.features.auth.Res
+import com.kerosene.features.auth.email
+import com.kerosene.features.auth.login
+import com.kerosene.features.auth.password
+import com.kerosene.features.auth.presentation.Dimens.elementsSpacer
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 
 object Dimens {
     val elementsSpacer = 24.dp
 }
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    viewModel: LoginViewModel = koinViewModel(),
+    onLoginSuccess: () -> Unit,
+) {
+    val state by viewModel.state.collectAsState()
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val scrollState = rememberScrollState()
+
+    LaunchedEffect(Unit) {
+        viewModel.events.collect { event ->
+            when (event) {
+                is LoginUiEvent.LoginSuccessEvent -> onLoginSuccess()
+            }
+        }
+    }
+
+    LoginContent(
+        username = state.username,
+        password = state.password,
+        isLoginButtonActive = state.isLoginButtonActive,
+        error = state.error,
+        onUsernameChanged = viewModel::onUsernameChanged,
+        onPasswordChanged = viewModel::onPasswordChanged,
+        onLoginClick = viewModel::onLoginClick,
+        scrollState = scrollState,
+        focusManager = focusManager,
+        keyboardController = keyboardController
+    )
+}
+
+@Composable
+private fun LoginContent(
+    username: String,
+    password: String,
+    isLoginButtonActive: Boolean,
+    error: String?,
+    onUsernameChanged: (String) -> Unit,
+    onPasswordChanged: (String) -> Unit,
+    onLoginClick: () -> Unit,
+    scrollState: ScrollState,
+    focusManager: FocusManager,
+    keyboardController: SoftwareKeyboardController?,
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -67,11 +110,27 @@ fun LoginScreen() {
     ) {
         LoginImage()
         Spacer(modifier = Modifier.height(elementsSpacer))
-        EmailTextInput()
+
+        EmailTextInput(
+            value = username,
+            onValueChange = onUsernameChanged
+        )
+
         Spacer(modifier = Modifier.height(elementsSpacer))
-        PasswordTextInput()
+
+        PasswordTextInput(
+            value = password,
+            onValueChange = onPasswordChanged
+        )
+
+        LoginError(message = error)
+
         Spacer(modifier = Modifier.height(elementsSpacer))
-        LoginButton()
+
+        LoginButton(
+            enabled = isLoginButtonActive,
+            onClick = onLoginClick
+        )
     }
 }
 
@@ -83,11 +142,13 @@ private fun LoginImage() {
 }
 
 @Composable
-private fun EmailTextInput() {
-    var email by rememberSaveable { mutableStateOf("") }
+private fun EmailTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+) {
     OutlinedTextField(
-        value = email,
-        onValueChange = { email = it },
+        value = value,
+        onValueChange = onValueChange,
         label = { Text(text = stringResource(Res.string.email)) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(
@@ -97,11 +158,13 @@ private fun EmailTextInput() {
 }
 
 @Composable
-private fun PasswordTextInput() {
-    var password by rememberSaveable { mutableStateOf("") }
+private fun PasswordTextInput(
+    value: String,
+    onValueChange: (String) -> Unit,
+) {
     OutlinedTextField(
-        value = password,
-        onValueChange = { password = it },
+        value = value,
+        onValueChange = onValueChange,
         label = { Text(text = stringResource(Res.string.password)) },
         singleLine = true,
         visualTransformation = PasswordVisualTransformation(),
@@ -112,17 +175,26 @@ private fun PasswordTextInput() {
 }
 
 @Composable
-private fun LoginButton() {
+private fun LoginButton(
+    enabled: Boolean,
+    onClick: () -> Unit,
+) {
     Button(
-        onClick = {},
+        onClick = onClick,
+        enabled = enabled,
         shape = RoundedCornerShape(16.dp)
     ) {
         Text(text = stringResource(Res.string.login))
     }
 }
 
-@Preview
 @Composable
-private fun TestLoginScreen() {
-    LoginScreen()
+private fun LoginError(message: String?) {
+    if (message == null) return
+
+    Spacer(modifier = Modifier.height(8.dp))
+    Text(
+        text = message,
+        color = MaterialTheme.colorScheme.error
+    )
 }
