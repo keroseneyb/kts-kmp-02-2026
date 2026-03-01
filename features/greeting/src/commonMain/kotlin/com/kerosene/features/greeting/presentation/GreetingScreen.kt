@@ -1,10 +1,11 @@
-package com.kerosene.kts_kmp_02_2026.feature.greeting.presentation
+package com.kerosene.features.greeting.presentation
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -16,11 +17,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.kerosene.kts_kmp_02_2026.common.ui.AppImage
-import ktskmp022026.composeapp.generated.resources.Res
-import ktskmp022026.composeapp.generated.resources.gotologin
-import ktskmp022026.composeapp.generated.resources.welcome
+import com.kerosene.core.common.ui.AppImage
+import com.kerosene.features.greeting.Res
+import com.kerosene.features.greeting.gotologin
+import com.kerosene.features.greeting.presentation.Dimens.elementsSpacer
+import com.kerosene.features.greeting.welcome
 import org.jetbrains.compose.resources.stringResource
+
+object Dimens {
+    val elementsSpacer = 24.dp
+}
 
 @Composable
 fun GreetingScreen(
@@ -34,9 +40,9 @@ fun GreetingScreen(
         verticalArrangement = Arrangement.Center
     ) {
         GreetingImage()
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(elementsSpacer))
         GreetingText()
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(elementsSpacer))
         GoToLoginScreenButton(onGoToLoginButtonClick = onGoToLoginButtonClick)
     }
 }
@@ -44,7 +50,8 @@ fun GreetingScreen(
 @Composable
 private fun GreetingImage() {
     AppImage(
-        model = "https://i.pinimg.com/736x/4e/5c/f7/4e5cf7d4ccb9c59b6620a9c71944d51e.jpg"
+        model = "https://i.pinimg.com/736x/4e/5c/f7/4e5cf7d4ccb9c59b6620a9c71944d51e.jpg",
+        modifier = Modifier.fillMaxWidth()
     )
 }
 
