@@ -33,3 +33,12 @@ plugins {
 }
 
 include(":composeApp")
+
+include(":core:common")
+include(":core:navigation")
+include(":core:network")
+include(":core:database")
+
+include(":features:greeting")
+include(":features:auth")
+include(":features:feed")

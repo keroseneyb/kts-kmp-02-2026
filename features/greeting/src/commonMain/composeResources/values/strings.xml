@@ -1,0 +1,4 @@
+<resources>
+    <string name="welcome">Welcome!</string>
+    <string name="gotologin">Go To Login</string>
+</resources>
