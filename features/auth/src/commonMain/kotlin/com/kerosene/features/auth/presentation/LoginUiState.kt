@@ -6,6 +6,9 @@ import androidx.compose.runtime.Immutable
 data class LoginUiState(
     val username: String,
     val password: String,
-    val isLoginButtonActive: Boolean,
+    val isLoading: Boolean,
     val error: String?,
-)
+) {
+    val isLoginButtonActive: Boolean
+        get() = username.isNotBlank() && password.isNotBlank() && !isLoading
+}
