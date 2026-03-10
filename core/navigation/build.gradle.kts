@@ -15,9 +15,6 @@ kotlin {
             dependencies {
                 api(libs.compose.navigation)
                 api(libs.kotlin.serialization)
-                implementation(project(":features:auth"))
-                implementation(project(":features:greeting"))
-                implementation(project(":features:feed"))
                 implementation(project(":core:common"))
             }
         }
