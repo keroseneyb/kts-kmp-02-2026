@@ -1,13 +1,13 @@
-package com.kerosene.core.common.ui
+package com.kerosene.core.designsystem.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import coil3.compose.AsyncImage
-import com.kerosene.core.common.Res
-import com.kerosene.core.common.ic_image_error
-import com.kerosene.core.common.ic_image_placeholder
+import ktskmp022026.core.designsystem.generated.resources.Res
+import ktskmp022026.core.designsystem.generated.resources.ic_image_error
+import ktskmp022026.core.designsystem.generated.resources.ic_image_placeholder
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
