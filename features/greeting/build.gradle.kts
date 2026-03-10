@@ -21,7 +21,8 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:common"))
-                implementation(libs.compose.navigation)
+                implementation(project(":core:designsystem"))
+                implementation(project(":core:navigation"))
                 implementation(libs.compose.runtime)
                 implementation(libs.compose.foundation)
                 implementation(libs.compose.material3)
