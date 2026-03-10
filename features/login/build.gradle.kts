@@ -8,7 +8,7 @@ plugins {
 
 compose.resources {
     publicResClass = true
-    packageOfResClass = "com.kerosene.features.auth"
+    packageOfResClass = "com.kerosene.features.login"
 }
 
 kotlin {
@@ -19,8 +19,13 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:common"))
-                implementation(libs.compose.navigation)
+                implementation(project(":core:designsystem"))
+                implementation(project(":core:navigation"))
+                implementation(project(":core:auth:api"))
+                implementation(project(":core:network:api"))
                 implementation(libs.koin.core)
+                implementation(libs.compose.navigation)
+
                 implementation(libs.koin.compose)
                 implementation(libs.koin.compose.viewmodel)
                 implementation(libs.compose.runtime)
@@ -31,6 +36,7 @@ kotlin {
                 implementation(libs.compose.components.resources)
                 implementation(libs.compose.uiTooling)
                 implementation(libs.compose.uiToolingPreview)
+                implementation(libs.webview.multiplatform)
                 implementation(libs.coil)
                 implementation(libs.coil.okhttp)
             }
@@ -39,7 +45,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.kerosene.features.auth"
+    namespace = "com.kerosene.features.login"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
