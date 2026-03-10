@@ -41,14 +41,22 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
 
+            // Logger
+            implementation(libs.napier)
+
             // Project Modules
             implementation(project(":core:navigation"))
+            implementation(project(":core:designsystem"))
             implementation(project(":core:network"))
+            implementation(project(":core:network:api"))
             implementation(project(":core:database"))
             implementation(project(":core:common"))
+            implementation(project(":core:auth"))
+            implementation(project(":core:auth:api"))
             implementation(project(":features:greeting"))
-            implementation(project(":features:auth"))
-            implementation(project(":features:feed"))
+            implementation(project(":features:login"))
+            implementation(project(":features:feed:api"))
+            implementation(project(":features:feed:impl"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

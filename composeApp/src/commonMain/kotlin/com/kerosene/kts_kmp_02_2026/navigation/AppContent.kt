@@ -1,8 +1,7 @@
-package com.kerosene.kts_kmp_02_2026.app
+package com.kerosene.kts_kmp_02_2026.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import com.kerosene.core.navigation.AppNavGraph
 
 @Composable
 fun AppContent() {

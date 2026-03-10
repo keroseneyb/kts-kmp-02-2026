@@ -35,10 +35,15 @@ plugins {
 include(":composeApp")
 
 include(":core:common")
+include(":core:designsystem")
 include(":core:navigation")
 include(":core:network")
+include(":core:network:api")
 include(":core:database")
+include(":core:auth")
+include(":core:auth:api")
 
 include(":features:greeting")
-include(":features:auth")
-include(":features:feed")
+include(":features:login")
+include(":features:feed:api")
+include(":features:feed:impl")
