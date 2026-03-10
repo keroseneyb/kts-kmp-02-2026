@@ -18,8 +18,13 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":features:feed:api"))
                 implementation(project(":core:common"))
-                implementation(libs.compose.navigation)
+                implementation(project(":core:designsystem"))
+                implementation(project(":core:navigation"))
+                implementation(project(":core:network:api"))
+                implementation(libs.ktor.core)
+                implementation(libs.ktor.client.serialization)
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
                 implementation(libs.koin.compose.viewmodel)
