@@ -16,13 +16,14 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm()
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)
@@ -31,12 +32,31 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.compose.components.resources)
             implementation(libs.compose.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(libs.compose.navigation)
             implementation(libs.coil)
             implementation(libs.coil.okhttp)
-            implementation(libs.kotlin.serialization)
+
+            // DI
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+
+            // Logger
+            implementation(libs.napier)
+
+            // Project Modules
+            implementation(project(":core:navigation"))
+            implementation(project(":core:designsystem"))
+            implementation(project(":core:network"))
+            implementation(project(":core:network:api"))
+            implementation(project(":core:database"))
+            implementation(project(":core:common"))
+            implementation(project(":core:auth"))
+            implementation(project(":core:auth:api"))
+            implementation(project(":features:greeting"))
+            implementation(project(":features:login"))
+            implementation(project(":features:feed:api"))
+            implementation(project(":features:feed:impl"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

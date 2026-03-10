@@ -1,0 +1,5 @@
+<resources>
+    <string name="email">example@gmail.com</string>
+    <string name="password">Введите пароль</string>
+    <string name="login">Войти</string>
+</resources>

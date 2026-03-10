@@ -1,0 +1,13 @@
+<resources>
+    <string name="error_prefix">Ошибка: </string>
+    <string name="search_requests">Поиск запросов</string>
+    <string name="nothing_found">Ничего не найдено</string>
+    <string name="no_waiting_chats">Нет чатов, ожидающих ответа</string>
+    <string name="empty_chat_list">Список чатов пуст</string>
+    <string name="your_spaces">Ваши пространства</string>
+    <string name="search">Поиск</string>
+    <string name="no_projects">В этом кабинете нет проектов</string>
+    <string name="all_requests">Все запросы</string>
+    <string name="waiting_for_reply">Ожидают ответа</string>
+    <string name="select_project">Выберите проект</string>
+</resources>
